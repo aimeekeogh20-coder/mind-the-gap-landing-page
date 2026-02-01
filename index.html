@@ -1,0 +1,1646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mind the Gap | Psychology-Backed Study Platform</title>
+    <meta name="description" content="Study smarter, not harder. Mind the Gap is Ireland's psychology-backed study platform with personalized learning paths and AI support.">
+
+    <!-- Google Fonts - Inter Only -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- GSAP + ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --blue: #0055FF;
+            --blue-dark: #0044CC;
+            --blue-light: #E8F0FF;
+            --teal: #00B4A6;
+            --teal-light: #E6F7F6;
+            --black: #0D0D0D;
+            --grey-900: #1a1a1a;
+            --grey-700: #404040;
+            --grey-500: #6B7280;
+            --grey-300: #D1D5DB;
+            --grey-200: #E5E7EB;
+            --grey-100: #F3F4F6;
+            --cream: #FAFAF9;
+            --white: #FFFFFF;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+            --shadow-lg: 0 12px 40px rgba(0,0,0,0.12);
+            --shadow-xl: 0 24px 60px rgba(0,0,0,0.16);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--cream);
+            color: var(--black);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Typography - Inter Only */
+        .display {
+            font-size: clamp(48px, 10vw, 120px);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 0.95;
+        }
+
+        .heading-xl {
+            font-size: clamp(40px, 8vw, 80px);
+            font-weight: 800;
+            letter-spacing: -0.035em;
+            line-height: 0.95;
+        }
+
+        .heading-lg {
+            font-size: clamp(28px, 4vw, 48px);
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            line-height: 1.1;
+        }
+
+        .heading-md {
+            font-size: clamp(20px, 2.5vw, 28px);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            line-height: 1.3;
+        }
+
+        .body-lg {
+            font-size: clamp(17px, 1.5vw, 20px);
+            line-height: 1.7;
+            color: var(--grey-500);
+        }
+
+        .body-md {
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--grey-500);
+        }
+
+        .label {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--blue);
+        }
+
+        /* Pill Buttons */
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            background: var(--white);
+            border: 1.5px solid var(--grey-200);
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--black);
+            text-decoration: none;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .pill:hover {
+            background: var(--black);
+            color: var(--white);
+            border-color: var(--black);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-1px);
+        }
+
+        .pill svg {
+            width: 12px;
+            height: 12px;
+            transition: transform 0.25s ease;
+        }
+
+        .pill:hover svg {
+            transform: translateX(3px);
+        }
+
+        .pill.active {
+            background: var(--black);
+            color: var(--white);
+            border-color: var(--black);
+        }
+
+        .pill.cta {
+            background: var(--blue);
+            color: var(--white);
+            border-color: var(--blue);
+            box-shadow: 0 4px 14px rgba(0, 85, 255, 0.25);
+        }
+
+        .pill.cta:hover {
+            background: var(--blue-dark);
+            border-color: var(--blue-dark);
+            box-shadow: 0 6px 20px rgba(0, 85, 255, 0.35);
+            transform: translateY(-2px);
+        }
+
+        .pill.lg {
+            padding: 16px 32px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .pill.xl {
+            padding: 20px 40px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav.scrolled {
+            background: rgba(250, 250, 249, 0.92);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            box-shadow: 0 1px 0 rgba(0,0,0,0.05);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 8px;
+        }
+
+        .nav-spacer { flex: 1; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+        }
+
+        /* Diamond Background Pattern */
+        .diamond-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        .diamond-pattern {
+            stroke: var(--grey-200);
+            stroke-width: 1;
+            stroke-dasharray: 4 4;
+            fill: none;
+        }
+
+        /* Hero Section - Cregg Paris Style */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 140px 24px 100px;
+            position: relative;
+            overflow: hidden;
+            background: var(--black);
+        }
+
+        .hero-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1100px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 500;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 32px;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .hero-badge-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--teal);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.1); }
+        }
+
+        .hero-title {
+            margin-bottom: 28px;
+            color: var(--white);
+        }
+
+        .hero-title .line {
+            display: block;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        .hero-title .line.accent {
+            background: linear-gradient(135deg, var(--blue) 0%, var(--teal) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            max-width: 640px;
+            margin: 0 auto 40px;
+            opacity: 0;
+            transform: translateY(20px);
+            color: rgba(255,255,255,0.6);
+        }
+
+        .hero-cta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .hero-cta .pill:not(.cta) {
+            background: transparent;
+            border-color: rgba(255,255,255,0.3);
+            color: var(--white);
+        }
+
+        .hero-cta .pill:not(.cta):hover {
+            background: var(--white);
+            color: var(--black);
+            border-color: var(--white);
+        }
+
+        .hero-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 48px;
+            justify-content: center;
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            opacity: 0;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat-value {
+            font-size: 36px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: var(--white);
+        }
+
+        .hero-stat-label {
+            font-size: 14px;
+            color: rgba(255,255,255,0.5);
+            margin-top: 4px;
+        }
+
+        /* Statement Section */
+        .statement {
+            padding: 160px 24px;
+            text-align: center;
+            background: var(--white);
+        }
+
+        .statement-text {
+            font-size: clamp(32px, 6vw, 64px);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.15;
+            color: var(--grey-300);
+            max-width: 1000px;
+            margin: 0 auto;
+            opacity: 0;
+        }
+
+        .statement-text span {
+            color: var(--black);
+        }
+
+        /* Design Beyond Barriers - Card Grid Section */
+        .cards-section {
+            padding: 120px 24px 160px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-header .label {
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        /* Bubble Grid - Design Beyond Barriers Style */
+        .bubble-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 320px));
+            gap: 60px 40px;
+            justify-content: center;
+            padding: 40px 0;
+        }
+
+        .bubble-card {
+            position: relative;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .bubble-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .bubble-card:hover .bubble-title-wrapper {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .bubble-card:hover .bubble-title-wrapper::before,
+        .bubble-card:hover .bubble-title-wrapper::after {
+            background: var(--black);
+        }
+
+        /* Illustrated Figure */
+        .bubble-illustration {
+            width: 220px;
+            height: 240px;
+            margin: 0 auto -20px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            position: relative;
+        }
+
+        .figure-svg {
+            width: 160px;
+            height: 220px;
+        }
+
+        /* Chat Bubble Title - Exact DBB Style */
+        .bubble-title-wrapper {
+            position: relative;
+            background: var(--white);
+            border: 2px solid var(--black);
+            border-radius: 12px;
+            padding: 16px 20px;
+            font-size: 15px;
+            font-weight: 600;
+            line-height: 1.45;
+            text-align: center;
+            transition: all 0.25s ease;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .bubble-title-wrapper::before {
+            content: '';
+            position: absolute;
+            bottom: -18px;
+            left: 28px;
+            width: 16px;
+            height: 16px;
+            background: var(--white);
+            border: 2px solid var(--black);
+            border-radius: 50%;
+            transition: background 0.25s ease;
+        }
+
+        .bubble-title-wrapper::after {
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            left: 40px;
+            width: 10px;
+            height: 10px;
+            background: var(--white);
+            border: 2px solid var(--black);
+            border-radius: 50%;
+            transition: background 0.25s ease;
+        }
+
+        /* Profile Section */
+        .profile-section {
+            padding: 160px 24px;
+            background: var(--white);
+        }
+
+        .profile-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            align-items: center;
+        }
+
+        @media (max-width: 900px) {
+            .profile-grid {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+        }
+
+        .strength-bars {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .strength-bar {
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        .strength-bar-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .strength-bar-value {
+            color: var(--blue);
+            font-weight: 700;
+        }
+
+        .strength-bar-track {
+            height: 10px;
+            background: var(--grey-100);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .strength-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--blue), var(--teal));
+            border-radius: 5px;
+            width: 0%;
+            transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .radar-wrapper {
+            background: var(--cream);
+            border-radius: 24px;
+            padding: 48px;
+            border: 1px solid var(--grey-200);
+            box-shadow: var(--shadow-md);
+        }
+
+        .radar-chart {
+            width: 100%;
+            max-width: 380px;
+            margin: 0 auto;
+        }
+
+        .radar-label {
+            font-size: 11px;
+            fill: var(--grey-500);
+            font-weight: 500;
+        }
+
+        /* FAQ Section - Design Beyond Barriers Style */
+        .faq-section {
+            padding: 120px 24px;
+            background: var(--cream);
+            border-top: 1px solid var(--grey-200);
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-header {
+            margin-bottom: 60px;
+        }
+
+        .faq-header .label {
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .faq-list {
+            border-top: 2px solid var(--black);
+        }
+
+        .faq-item {
+            border-bottom: 2px solid var(--black);
+        }
+
+        .faq-question {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 24px 0;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+            font-family: inherit;
+            transition: all 0.2s ease;
+        }
+
+        .faq-question:hover {
+            padding-left: 12px;
+        }
+
+        .faq-question-text {
+            font-size: clamp(18px, 2.5vw, 24px);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: var(--black);
+            padding-right: 20px;
+        }
+
+        .faq-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--black);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        .faq-answer-content {
+            padding: 0 0 32px 0;
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--grey-700);
+            max-width: 700px;
+        }
+
+        /* Final CTA */
+        .cta-section {
+            padding: 200px 24px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(0, 85, 255, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .cta-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--blue-light);
+            color: var(--blue);
+            padding: 10px 20px;
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 32px;
+        }
+
+        .cta-trust {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px;
+            justify-content: center;
+            margin-top: 56px;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            color: var(--grey-500);
+        }
+
+        .trust-item svg {
+            color: var(--teal);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--black);
+            color: var(--white);
+            padding: 100px 24px 60px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 80px;
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--blue), var(--teal));
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 20px;
+        }
+
+        .footer-brand-name {
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .footer-desc {
+            color: rgba(255,255,255,0.5);
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 28px;
+            max-width: 320px;
+        }
+
+        .footer-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--teal);
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .footer-title {
+            font-weight: 600;
+            margin-bottom: 24px;
+            font-size: 15px;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 60px auto 0;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-copy {
+            font-size: 13px;
+            color: rgba(255,255,255,0.35);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-social a {
+            color: rgba(255,255,255,0.35);
+            transition: color 0.2s ease;
+        }
+
+        .footer-social a:hover {
+            color: var(--white);
+        }
+
+        /* Mobile Sticky CTA */
+        .mobile-cta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 16px 20px;
+            background: var(--white);
+            border-top: 1px solid var(--grey-200);
+            z-index: 50;
+            transform: translateY(100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: none;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+        }
+
+        .mobile-cta.visible {
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .mobile-cta { display: block; }
+        }
+
+        .mobile-cta-btn {
+            width: 100%;
+            padding: 18px;
+            background: var(--blue);
+            color: var(--white);
+            border: none;
+            border-radius: 100px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 14px rgba(0, 85, 255, 0.25);
+        }
+
+        /* Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .bubble-grid {
+                grid-template-columns: 1fr;
+                gap: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Diamond Background Pattern -->
+    <svg class="diamond-bg" viewBox="0 0 100% 100%" preserveAspectRatio="xMidYMid slice">
+        <defs>
+            <pattern id="diamond-pattern" x="0" y="0" width="192" height="96" patternUnits="userSpaceOnUse">
+                <path class="diamond-pattern" d="M0 48 L96 0 L192 48 L96 96 Z" />
+            </pattern>
+        </defs>
+        <rect x="-1000" y="-1000" width="3000" height="3000" fill="url(#diamond-pattern)" />
+    </svg>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <a href="/" class="pill active">
+            Mind the Gap
+            <svg viewBox="0 0 10 10" fill="none"><path d="M10 5L5 10L4 9L7.5 5.5H0V4.5H7.5L4 1L5 0L10 5Z" fill="currentColor"/></svg>
+        </a>
+        <div class="nav-links">
+            <a href="#how-it-works" class="pill">How It Works</a>
+            <a href="#profile" class="pill">Your Profile</a>
+            <a href="#faq" class="pill">FAQ</a>
+        </div>
+        <div class="nav-spacer"></div>
+        <a href="#diagnostic" class="pill cta">Get Started</a>
+    </nav>
+
+    <!-- Hero Section - Cregg Paris Style Dark with Canvas -->
+    <section class="hero" id="hero">
+        <canvas class="hero-canvas" id="hero-canvas"></canvas>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="hero-badge-dot"></span>
+                Psychology-Backed Framework
+            </div>
+            <h1 class="display hero-title">
+                <span class="line">Study Smarter,</span>
+                <span class="line accent">Not Harder.</span>
+            </h1>
+            <p class="body-lg hero-subtitle">
+                Discover how your brain processes information. Get a personalised study strategy built on cognitive psychology research.
+            </p>
+            <div class="hero-cta">
+                <a href="#diagnostic" class="pill cta lg">
+                    Take the 2-Minute Diagnostic
+                    <svg viewBox="0 0 10 10" fill="none"><path d="M10 5L5 10L4 9L7.5 5.5H0V4.5H7.5L4 1L5 0L10 5Z" fill="currentColor"/></svg>
+                </a>
+                <a href="#how-it-works" class="pill lg">
+                    See How It Works
+                </a>
+            </div>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="hero-stat-value">10+</div>
+                    <div class="hero-stat-label">Partner Schools</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">80%</div>
+                    <div class="hero-stat-label">Achieving Top 20% LC Grades</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">1,000+</div>
+                    <div class="hero-stat-label">Students and Counting</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statement Section -->
+    <section class="statement">
+        <div class="statement-text">
+            <span>Your learning style is unique.</span><br>
+            Your study plan should be too.
+        </div>
+    </section>
+
+    <!-- Design Beyond Barriers - Card Grid -->
+    <section class="cards-section" id="how-it-works">
+        <div class="section-header">
+            <span class="label reveal">How It Works</span>
+            <h2 class="heading-lg reveal">Three Steps to Better Learning</h2>
+        </div>
+
+        <div class="bubble-grid">
+            <!-- Card 1: The Diagnostic -->
+            <div class="bubble-card reveal">
+                <div class="bubble-illustration">
+                    <svg class="figure-svg" viewBox="0 0 160 220" fill="none">
+                        <!-- Standing figure with clipboard -->
+                        <ellipse cx="80" cy="35" rx="28" ry="30" fill="#0D0D0D"/>
+                        <rect x="45" y="60" width="70" height="100" rx="35" fill="#0D0D0D"/>
+                        <rect x="20" y="75" width="14" height="55" rx="7" fill="#0D0D0D" transform="rotate(-15 20 75)"/>
+                        <rect x="126" y="75" width="14" height="55" rx="7" fill="#0D0D0D" transform="rotate(15 126 75)"/>
+                        <rect x="55" y="155" width="16" height="55" rx="8" fill="#0D0D0D" transform="rotate(-5 55 155)"/>
+                        <rect x="89" y="155" width="16" height="55" rx="8" fill="#0D0D0D" transform="rotate(5 89 155)"/>
+                        <!-- Clipboard -->
+                        <rect x="95" y="90" width="35" height="45" rx="4" fill="#0055FF" opacity="0.9"/>
+                        <rect x="100" y="100" width="25" height="3" rx="1.5" fill="white" opacity="0.6"/>
+                        <rect x="100" y="108" width="20" height="3" rx="1.5" fill="white" opacity="0.6"/>
+                        <rect x="100" y="116" width="22" height="3" rx="1.5" fill="white" opacity="0.6"/>
+                    </svg>
+                </div>
+                <div class="bubble-title-wrapper">
+                    How does your brain process information? Take the 2-minute diagnostic.
+                </div>
+            </div>
+
+            <!-- Card 2: The Study Hub -->
+            <div class="bubble-card reveal">
+                <div class="bubble-illustration">
+                    <svg class="figure-svg" viewBox="0 0 160 220" fill="none">
+                        <!-- Excited figure with arms up -->
+                        <ellipse cx="80" cy="35" rx="28" ry="30" fill="#0055FF"/>
+                        <rect x="45" y="60" width="70" height="100" rx="35" fill="#0055FF"/>
+                        <rect x="15" y="55" width="14" height="55" rx="7" fill="#0055FF" transform="rotate(-45 15 55)"/>
+                        <rect x="145" y="55" width="14" height="55" rx="7" fill="#0055FF" transform="rotate(45 145 55)"/>
+                        <rect x="55" y="155" width="16" height="55" rx="8" fill="#0055FF" transform="rotate(-8 55 155)"/>
+                        <rect x="89" y="155" width="16" height="55" rx="8" fill="#0055FF" transform="rotate(8 89 155)"/>
+                        <!-- Dashboard cards floating -->
+                        <rect x="5" y="20" width="30" height="40" rx="4" fill="#0D0D0D" opacity="0.15"/>
+                        <rect x="125" y="15" width="30" height="40" rx="4" fill="#0D0D0D" opacity="0.15"/>
+                    </svg>
+                </div>
+                <div class="bubble-title-wrapper">
+                    Get your personalised Study Hub with 700+ dashboard variations.
+                </div>
+            </div>
+
+            <!-- Card 3: The AI Assistant -->
+            <div class="bubble-card reveal">
+                <div class="bubble-illustration">
+                    <svg class="figure-svg" viewBox="0 0 160 220" fill="none">
+                        <!-- Walking/moving figure -->
+                        <ellipse cx="80" cy="35" rx="28" ry="30" fill="#00B4A6"/>
+                        <rect x="45" y="60" width="70" height="100" rx="35" fill="#00B4A6"/>
+                        <rect x="25" y="70" width="14" height="55" rx="7" fill="#00B4A6" transform="rotate(-25 25 70)"/>
+                        <rect x="120" y="80" width="14" height="55" rx="7" fill="#00B4A6" transform="rotate(10 120 80)"/>
+                        <rect x="50" y="150" width="16" height="60" rx="8" fill="#00B4A6" transform="rotate(-20 50 150)"/>
+                        <rect x="94" y="155" width="16" height="60" rx="8" fill="#00B4A6" transform="rotate(15 94 155)"/>
+                        <!-- Chat bubble -->
+                        <rect x="100" y="5" width="50" height="35" rx="8" fill="#0D0D0D"/>
+                        <circle cx="115" cy="22" r="4" fill="white" opacity="0.6"/>
+                        <circle cx="125" cy="22" r="4" fill="white" opacity="0.6"/>
+                        <circle cx="135" cy="22" r="4" fill="white" opacity="0.6"/>
+                    </svg>
+                </div>
+                <div class="bubble-title-wrapper">
+                    24/7 AI support and accountability streaks keep you on track.
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 60px;" class="reveal">
+            <a href="#diagnostic" class="pill cta lg">
+                Start Your Journey
+                <svg viewBox="0 0 10 10" fill="none"><path d="M10 5L5 10L4 9L7.5 5.5H0V4.5H7.5L4 1L5 0L10 5Z" fill="currentColor"/></svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- Profile Preview Section -->
+    <section class="profile-section" id="profile">
+        <div class="profile-grid">
+            <div>
+                <span class="label reveal">Your Cognitive Profile</span>
+                <h2 class="heading-lg reveal" style="margin: 16px 0;">See Yourself In a New Light</h2>
+                <p class="body-lg reveal">Your diagnostic reveals your unique cognitive fingerprint. Understand your strengths and get strategies tailored specifically to how your brain works.</p>
+
+                <div class="strength-bars">
+                    <div class="strength-bar">
+                        <div class="strength-bar-header">
+                            <span>Visual Learning</span>
+                            <span class="strength-bar-value">87%</span>
+                        </div>
+                        <div class="strength-bar-track">
+                            <div class="strength-bar-fill" data-width="87"></div>
+                        </div>
+                    </div>
+                    <div class="strength-bar">
+                        <div class="strength-bar-header">
+                            <span>Sequential Processing</span>
+                            <span class="strength-bar-value">72%</span>
+                        </div>
+                        <div class="strength-bar-track">
+                            <div class="strength-bar-fill" data-width="72"></div>
+                        </div>
+                    </div>
+                    <div class="strength-bar">
+                        <div class="strength-bar-header">
+                            <span>Active Recall</span>
+                            <span class="strength-bar-value">91%</span>
+                        </div>
+                        <div class="strength-bar-track">
+                            <div class="strength-bar-fill" data-width="91"></div>
+                        </div>
+                    </div>
+                    <div class="strength-bar">
+                        <div class="strength-bar-header">
+                            <span>Focus Duration</span>
+                            <span class="strength-bar-value">65%</span>
+                        </div>
+                        <div class="strength-bar-track">
+                            <div class="strength-bar-fill" data-width="65"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 40px;" class="reveal">
+                    <a href="#diagnostic" class="pill cta lg">
+                        Discover Your Profile
+                        <svg viewBox="0 0 10 10" fill="none"><path d="M10 5L5 10L4 9L7.5 5.5H0V4.5H7.5L4 1L5 0L10 5Z" fill="currentColor"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="radar-wrapper reveal">
+                <svg class="radar-chart" viewBox="0 0 380 380">
+                    <!-- Background circles -->
+                    <circle cx="190" cy="190" r="140" fill="none" stroke="#E5E7EB" stroke-width="1"/>
+                    <circle cx="190" cy="190" r="105" fill="none" stroke="#E5E7EB" stroke-width="1"/>
+                    <circle cx="190" cy="190" r="70" fill="none" stroke="#E5E7EB" stroke-width="1"/>
+                    <circle cx="190" cy="190" r="35" fill="none" stroke="#E5E7EB" stroke-width="1"/>
+
+                    <!-- Axis lines -->
+                    <line x1="190" y1="50" x2="190" y2="330" stroke="#E5E7EB" stroke-width="1"/>
+                    <line x1="50" y1="190" x2="330" y2="190" stroke="#E5E7EB" stroke-width="1"/>
+                    <line x1="91" y1="91" x2="289" y2="289" stroke="#E5E7EB" stroke-width="1"/>
+                    <line x1="289" y1="91" x2="91" y2="289" stroke="#E5E7EB" stroke-width="1"/>
+
+                    <!-- Data polygon -->
+                    <polygon
+                        id="radar-polygon"
+                        points="190,60 290,120 310,190 265,280 115,280 70,190 90,120"
+                        fill="rgba(0, 85, 255, 0.08)"
+                        stroke="#0055FF"
+                        stroke-width="2"
+                        opacity="0"
+                    />
+
+                    <!-- Data points -->
+                    <circle class="radar-dot" cx="190" cy="60" r="6" fill="#0055FF" opacity="0"/>
+                    <circle class="radar-dot" cx="290" cy="120" r="6" fill="#0055FF" opacity="0"/>
+                    <circle class="radar-dot" cx="310" cy="190" r="6" fill="#0055FF" opacity="0"/>
+                    <circle class="radar-dot" cx="265" cy="280" r="6" fill="#00B4A6" opacity="0"/>
+                    <circle class="radar-dot" cx="115" cy="280" r="6" fill="#00B4A6" opacity="0"/>
+                    <circle class="radar-dot" cx="70" cy="190" r="6" fill="#0055FF" opacity="0"/>
+                    <circle class="radar-dot" cx="90" cy="120" r="6" fill="#0055FF" opacity="0"/>
+
+                    <!-- Labels -->
+                    <text x="190" y="35" text-anchor="middle" class="radar-label">Visual</text>
+                    <text x="320" y="120" text-anchor="start" class="radar-label">Auditory</text>
+                    <text x="340" y="195" text-anchor="start" class="radar-label">Reading</text>
+                    <text x="275" y="310" text-anchor="middle" class="radar-label">Kinesthetic</text>
+                    <text x="105" y="310" text-anchor="middle" class="radar-label">Social</text>
+                    <text x="40" y="195" text-anchor="end" class="radar-label">Solitary</text>
+                    <text x="60" y="120" text-anchor="end" class="radar-label">Logical</text>
+                </svg>
+                <div style="text-align: center; margin-top: 20px;">
+                    <span class="pill" style="font-size: 12px; padding: 6px 14px; background: var(--grey-100); border-color: transparent;">Sample Profile</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section - Design Beyond Barriers Style -->
+    <section class="faq-section" id="faq">
+        <div class="faq-container">
+            <div class="faq-header">
+                <span class="label reveal">FAQ</span>
+                <h2 class="heading-lg reveal">Common Questions</h2>
+            </div>
+
+            <div class="faq-list">
+                <div class="faq-item reveal">
+                    <button class="faq-question" aria-expanded="false">
+                        <span class="faq-question-text">What is Mind the Gap?</span>
+                        <span class="faq-icon">
+                            <i data-lucide="plus" style="width: 18px; height: 18px;"></i>
+                        </span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Mind the Gap is Ireland's psychology-backed study platform designed specifically for Leaving Cert students. We use cognitive science research to understand how your brain processes information and create personalised study strategies that actually work for you.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item reveal">
+                    <button class="faq-question" aria-expanded="false">
+                        <span class="faq-question-text">How does the diagnostic work?</span>
+                        <span class="faq-icon">
+                            <i data-lucide="plus" style="width: 18px; height: 18px;"></i>
+                        </span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Our 12-question diagnostic takes just 2 minutes and is based on established cognitive psychology frameworks. It assesses your learning style, optimal study times, retention patterns, and focus duration to create your unique cognitive profile.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item reveal">
+                    <button class="faq-question" aria-expanded="false">
+                        <span class="faq-question-text">Is Mind the Gap free to use?</span>
+                        <span class="faq-icon">
+                            <i data-lucide="plus" style="width: 18px; height: 18px;"></i>
+                        </span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            The cognitive diagnostic is completely free - no sign-up required. You'll get your full cognitive profile and basic study recommendations at no cost. Premium features like the AI assistant, advanced analytics, and full Study Hub access are available with a subscription.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item reveal">
+                    <button class="faq-question" aria-expanded="false">
+                        <span class="faq-question-text">What subjects do you cover?</span>
+                        <span class="faq-icon">
+                            <i data-lucide="plus" style="width: 18px; height: 18px;"></i>
+                        </span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            We cover all Leaving Cert subjects at both Higher and Ordinary level. Our system adapts to each subject's unique requirements while maintaining consistency with your cognitive profile and preferred learning methods.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item reveal">
+                    <button class="faq-question" aria-expanded="false">
+                        <span class="faq-question-text">How is this different from other study apps?</span>
+                        <span class="faq-icon">
+                            <i data-lucide="plus" style="width: 18px; height: 18px;"></i>
+                        </span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Most study apps take a one-size-fits-all approach. Mind the Gap is built on the understanding that every brain is different. We don't just give you content - we give you a personalised system based on how your specific brain learns best, backed by cognitive psychology research.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item reveal">
+                    <button class="faq-question" aria-expanded="false">
+                        <span class="faq-question-text">Do you work with schools?</span>
+                        <span class="faq-icon">
+                            <i data-lucide="plus" style="width: 18px; height: 18px;"></i>
+                        </span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Yes! We partner with schools across Ireland to bring Mind the Gap to students. Teachers get access to aggregated insights (never individual student data) to understand how their classes learn best. Contact us to learn more about school partnerships.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="cta-section" id="diagnostic">
+        <div class="cta-content">
+            <div class="cta-badge reveal">
+                <i data-lucide="sparkles" style="width: 16px; height: 16px;"></i>
+                Free Assessment
+            </div>
+            <h2 class="heading-xl reveal" style="margin-bottom: 24px;">
+                Ready to Bridge<br><span style="background: linear-gradient(135deg, var(--blue), var(--teal)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Your Gap?</span>
+            </h2>
+            <p class="body-lg reveal" style="margin-bottom: 40px; max-width: 560px; margin-left: auto; margin-right: auto;">
+                Join 1,000+ Irish students who've transformed their study habits. Take the diagnostic and get your personalised strategy today.
+            </p>
+            <div class="reveal">
+                <a href="#" class="pill cta xl">
+                    Take the Diagnostic Now
+                    <svg viewBox="0 0 10 10" fill="none"><path d="M10 5L5 10L4 9L7.5 5.5H0V4.5H7.5L4 1L5 0L10 5Z" fill="currentColor"/></svg>
+                </a>
+            </div>
+            <div class="cta-trust reveal">
+                <div class="trust-item">
+                    <i data-lucide="clock" style="width: 18px; height: 18px;"></i>
+                    2 minutes
+                </div>
+                <div class="trust-item">
+                    <i data-lucide="shield-check" style="width: 18px; height: 18px;"></i>
+                    No sign-up required
+                </div>
+                <div class="trust-item">
+                    <i data-lucide="lock" style="width: 18px; height: 18px;"></i>
+                    100% private
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div>
+                <div class="footer-brand">
+                    <div class="footer-logo">M</div>
+                    <span class="footer-brand-name">Mind the Gap</span>
+                </div>
+                <p class="footer-desc">Ireland's psychology-backed study platform. Helping students study smarter, not harder, since 2024.</p>
+                <div class="footer-badge">
+                    <i data-lucide="shield-check" style="width: 16px; height: 16px;"></i>
+                    Verified Psychology Framework
+                </div>
+            </div>
+            <div>
+                <div class="footer-title">Platform</div>
+                <ul class="footer-links">
+                    <li><a href="#">How It Works</a></li>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Pricing</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="footer-title">Company</div>
+                <ul class="footer-links">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Research</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-copy">&copy; 2024 Mind the Gap. Made with care in Ireland.</p>
+            <div class="footer-social">
+                <a href="#"><i data-lucide="twitter" style="width: 20px; height: 20px;"></i></a>
+                <a href="#"><i data-lucide="instagram" style="width: 20px; height: 20px;"></i></a>
+                <a href="#"><i data-lucide="linkedin" style="width: 20px; height: 20px;"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Sticky CTA -->
+    <div class="mobile-cta" id="mobile-cta">
+        <button class="mobile-cta-btn">
+            Take the Diagnostic
+            <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
+        </button>
+    </div>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Register GSAP ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
+
+        // ==========================================
+        // Hero Canvas Animation (Cregg Paris Style)
+        // ==========================================
+        const canvas = document.getElementById('hero-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let mouse = { x: null, y: null };
+        let animationId;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.baseSize = Math.random() * 3 + 1;
+                this.size = this.baseSize;
+                this.speedX = (Math.random() - 0.5) * 0.3;
+                this.speedY = (Math.random() - 0.5) * 0.3;
+                // Mix of blue, teal, and white dots like Cregg Paris
+                const colorChoice = Math.random();
+                if (colorChoice < 0.4) {
+                    this.color = '#0055FF';
+                } else if (colorChoice < 0.7) {
+                    this.color = '#00B4A6';
+                } else {
+                    this.color = '#ffffff';
+                }
+                this.opacity = Math.random() * 0.6 + 0.2;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                // Wrap around edges
+                if (this.x > canvas.width + 10) this.x = -10;
+                if (this.x < -10) this.x = canvas.width + 10;
+                if (this.y > canvas.height + 10) this.y = -10;
+                if (this.y < -10) this.y = canvas.height + 10;
+
+                // Mouse interaction - particles move away
+                if (mouse.x && mouse.y) {
+                    const dx = mouse.x - this.x;
+                    const dy = mouse.y - this.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 120) {
+                        const force = (120 - dist) / 120;
+                        this.x -= dx * force * 0.03;
+                        this.y -= dy * force * 0.03;
+                        this.size = this.baseSize + (force * 2);
+                    } else {
+                        this.size = this.baseSize;
+                    }
+                }
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.globalAlpha = this.opacity;
+                ctx.fill();
+                ctx.globalAlpha = 1;
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            const numParticles = Math.min(100, Math.floor((canvas.width * canvas.height) / 12000));
+            for (let i = 0; i < numParticles; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function connectParticles() {
+            for (let a = 0; a < particles.length; a++) {
+                for (let b = a + 1; b < particles.length; b++) {
+                    const dx = particles[a].x - particles[b].x;
+                    const dy = particles[a].y - particles[b].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < 120) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = '#ffffff';
+                        ctx.globalAlpha = 0.06 * (1 - dist / 120);
+                        ctx.lineWidth = 1;
+                        ctx.moveTo(particles[a].x, particles[a].y);
+                        ctx.lineTo(particles[b].x, particles[b].y);
+                        ctx.stroke();
+                        ctx.globalAlpha = 1;
+                    }
+                }
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            connectParticles();
+            animationId = requestAnimationFrame(animateParticles);
+        }
+
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+            initParticles();
+        });
+
+        canvas.addEventListener('mousemove', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            mouse.x = e.clientX - rect.left;
+            mouse.y = e.clientY - rect.top;
+        });
+
+        canvas.addEventListener('mouseleave', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
+
+        resizeCanvas();
+        initParticles();
+        animateParticles();
+
+        // ==========================================
+        // Hero Animations
+        // ==========================================
+        gsap.to('.hero-badge', {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: 'power3.out',
+            delay: 0.2
+        });
+
+        gsap.to('.hero-title .line', {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            stagger: 0.15,
+            ease: 'power3.out',
+            delay: 0.4
+        });
+
+        gsap.to('.hero-subtitle', {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: 'power3.out',
+            delay: 0.8
+        });
+
+        gsap.to('.hero-cta', {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: 'power3.out',
+            delay: 1
+        });
+
+        gsap.to('.hero-stats', {
+            opacity: 1,
+            duration: 0.8,
+            ease: 'power3.out',
+            delay: 1.2
+        });
+
+        // Statement Animation
+        gsap.to('.statement-text', {
+            opacity: 1,
+            duration: 1.2,
+            ease: 'power2.out',
+            scrollTrigger: {
+                trigger: '.statement',
+                start: 'top 70%'
+            }
+        });
+
+        // Reveal Animations
+        gsap.utils.toArray('.reveal').forEach((elem) => {
+            gsap.to(elem, {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: elem,
+                    start: 'top 85%'
+                }
+            });
+        });
+
+        // Strength Bars Animation
+        gsap.utils.toArray('.strength-bar').forEach((bar, i) => {
+            gsap.to(bar, {
+                opacity: 1,
+                x: 0,
+                duration: 0.6,
+                delay: i * 0.1,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: '.strength-bars',
+                    start: 'top 75%',
+                    onEnter: () => {
+                        const fill = bar.querySelector('.strength-bar-fill');
+                        if (fill) {
+                            setTimeout(() => {
+                                fill.style.width = fill.dataset.width + '%';
+                            }, i * 100);
+                        }
+                    }
+                }
+            });
+        });
+
+        // Radar Chart Animation
+        ScrollTrigger.create({
+            trigger: '.radar-wrapper',
+            start: 'top 70%',
+            onEnter: () => {
+                gsap.to('#radar-polygon', {
+                    opacity: 1,
+                    duration: 1,
+                    ease: 'power2.out'
+                });
+                gsap.to('.radar-dot', {
+                    opacity: 1,
+                    duration: 0.5,
+                    stagger: 0.08,
+                    ease: 'back.out(1.7)'
+                });
+            }
+        });
+
+        // Nav Scroll Effect
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 60) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Sticky CTA
+        const mobileCta = document.getElementById('mobile-cta');
+        ScrollTrigger.create({
+            trigger: '#hero',
+            start: 'bottom top',
+            onEnter: () => mobileCta.classList.add('visible'),
+            onLeaveBack: () => mobileCta.classList.remove('visible')
+        });
+
+        // ==========================================
+        // FAQ Accordion Functionality
+        // ==========================================
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+
+                // Close all other items
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                        otherItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+                    }
+                });
+
+                // Toggle current item
+                item.classList.toggle('active');
+                question.setAttribute('aria-expanded', !isActive);
+            });
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = 80;
+                    const position = target.getBoundingClientRect().top + window.scrollY - offset;
+                    window.scrollTo({ top: position, behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
