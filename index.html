@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mind the Gap | Bridge the Gap in Your Learning</title>
-    <meta name="description" content="Ireland's psychology-backed study platform. Decode how your brain learns with our 12-question diagnostic and get a personalized study hub.">
+    <meta name="description" content="Ireland's psychology-backed study platform. Decode how your brain learns with our 12-question diagnostic and get a personalised study hub.">
 
     <!-- Google Fonts - Inter (cleaner, more modern) + JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -300,32 +300,6 @@
             z-index: 0;
         }
 
-        .hero-canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            opacity: 0.6;
-        }
-
-        /* Static fallback for reduce-motion */
-        .hero-static-bg {
-            display: none;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: transparent;
-            z-index: 0;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .hero-canvas { display: none; }
-            .hero-static-bg { display: block; }
-        }
 
         .hero-content {
             position: relative;
@@ -439,43 +413,6 @@
 
         .btn:hover svg {
             transform: translateX(3px);
-        }
-
-        /* Hero Stats - Hidden by default for minimal aesthetic */
-        .hero-stats {
-            display: none; /* Hidden for minimal aesthetic */
-            flex-wrap: wrap;
-            gap: 60px;
-            justify-content: center;
-            margin-top: 100px;
-            padding-top: 0;
-            border-top: none;
-            opacity: 0;
-        }
-
-        .hero-stats.visible {
-            display: flex;
-        }
-
-        .hero-stat {
-            text-align: center;
-        }
-
-        .hero-stat-value {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 28px;
-            font-weight: 600;
-            color: var(--ink);
-            letter-spacing: -0.02em;
-        }
-
-        .hero-stat-label {
-            font-size: 12px;
-            color: var(--ink-muted);
-            margin-top: 6px;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
         }
 
         /* ========================================
@@ -1093,10 +1030,6 @@
             overflow: hidden;
         }
 
-        .cta-section::before {
-            display: none;
-        }
-
         .cta-content {
             position: relative;
             max-width: 800px;
@@ -1448,9 +1381,6 @@
          SECTION 2: Neural Map Hero
          ======================================== -->
     <section class="hero" id="hero">
-        <canvas class="hero-canvas" id="hero-canvas"></canvas>
-        <div class="hero-static-bg" aria-hidden="true"></div>
-
         <div class="hero-content">
             <div class="hero-label">
                 <span class="hero-label-dot"></span>
@@ -1467,7 +1397,7 @@
             </h1>
 
             <p class="body-lg hero-subtitle">
-                Decode how your brain learns with our 12-question diagnostic. Get a personalized study hub built on cognitive psychology research.
+                Decode how your brain learns with our 12-question diagnostic. Get a personalised study hub built on cognitive psychology research.
             </p>
 
             <div class="hero-cta">
@@ -1478,21 +1408,6 @@
                 <a href="#process" class="btn btn-secondary">
                     See How It Works
                 </a>
-            </div>
-
-            <div class="hero-stats">
-                <div class="hero-stat">
-                    <div class="hero-stat-value">10+</div>
-                    <div class="hero-stat-label">Partner Schools</div>
-                </div>
-                <div class="hero-stat">
-                    <div class="hero-stat-value">80%</div>
-                    <div class="hero-stat-label">Top 20% LC Grades</div>
-                </div>
-                <div class="hero-stat">
-                    <div class="hero-stat-value">1,000+</div>
-                    <div class="hero-stat-label">Students</div>
-                </div>
             </div>
         </div>
     </section>
@@ -1506,35 +1421,35 @@
             <div class="logo-carousel-track">
                 <!-- First set of logos -->
                 <div class="logo-item">
-                    <img src="logo%20carousel/expo.png" alt="Expo">
+                    <img src="logo-carousel/expo.png" alt="Expo">
                 </div>
                 <div class="logo-item">
-                    <img src="logo%20carousel/fit.png" alt="FIT">
+                    <img src="logo-carousel/fit.png" alt="FIT">
                 </div>
                 <div class="logo-item">
-                    <img src="logo%20carousel/ndrc.png" alt="NDRC">
+                    <img src="logo-carousel/ndrc.png" alt="NDRC">
                 </div>
                 <div class="logo-item">
-                    <img src="logo%20carousel/ted.png" alt="TED">
+                    <img src="logo-carousel/ted.png" alt="TED">
                 </div>
                 <div class="logo-item">
-                    <img src="logo%20carousel/yste.jpeg" alt="YSTE">
+                    <img src="logo-carousel/yste.jpeg" alt="YSTE">
                 </div>
                 <!-- Duplicate set for seamless loop -->
                 <div class="logo-item">
-                    <img src="logo%20carousel/expo.png" alt="Expo">
+                    <img src="logo-carousel/expo.png" alt="Expo">
                 </div>
                 <div class="logo-item">
-                    <img src="logo%20carousel/fit.png" alt="FIT">
+                    <img src="logo-carousel/fit.png" alt="FIT">
                 </div>
                 <div class="logo-item">
-                    <img src="logo%20carousel/ndrc.png" alt="NDRC">
+                    <img src="logo-carousel/ndrc.png" alt="NDRC">
                 </div>
                 <div class="logo-item">
-                    <img src="logo%20carousel/ted.png" alt="TED">
+                    <img src="logo-carousel/ted.png" alt="TED">
                 </div>
                 <div class="logo-item">
-                    <img src="logo%20carousel/yste.jpeg" alt="YSTE">
+                    <img src="logo-carousel/yste.jpeg" alt="YSTE">
                 </div>
             </div>
         </div>
@@ -1589,8 +1504,8 @@
                 <div class="process-step" id="step-2">
                     <div class="process-step-content">
                         <div class="process-step-number">02</div>
-                        <h3 class="heading-lg process-step-title">Your Personalized Hub</h3>
-                        <p class="body-lg process-step-desc">Access 1 of 700 hub configurations tailored specifically to your cognitive profile. Every resource, optimized for how you learn.</p>
+                        <h3 class="heading-lg process-step-title">Your Personalised Hub</h3>
+                        <p class="body-lg process-step-desc">Access 1 of 700 hub configurations tailored specifically to your cognitive profile. Every resource, optimised for how you learn.</p>
                         <a href="#cta" class="btn btn-secondary">
                             Preview a Hub
                         </a>
@@ -1613,7 +1528,7 @@
                     <div class="process-step-content">
                         <div class="process-step-number">03</div>
                         <h3 class="heading-lg process-step-title">AI-Backed Accountability</h3>
-                        <p class="body-lg process-step-desc">24/7 AI support that understands your learning style. Get personalized nudges, answer questions, and maintain your study streaks.</p>
+                        <p class="body-lg process-step-desc">24/7 AI support that understands your learning style. Get personalised nudges, answer questions, and maintain your study streaks.</p>
                         <a href="#cta" class="btn btn-primary">
                             Join Waitlist
                             <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -1657,7 +1572,7 @@
                         </div>
                         <div class="feature-content">
                             <h3 class="feature-title">Cognitive Profiling</h3>
-                            <p class="feature-desc">Understand your unique learning fingerprint with our psychology-backed assessment. Our 12-question diagnostic reveals how your brain processes information across multiple cognitive dimensions, creating a personalized study experience unlike any other.</p>
+                            <p class="feature-desc">Understand your unique learning fingerprint with our psychology-backed assessment. Our 12-question diagnostic reveals how your brain processes information across multiple cognitive dimensions, creating a personalised study experience unlike any other.</p>
                             <div class="feature-stat">
                                 <span class="feature-stat-value">12</span>
                                 <span class="feature-stat-label">cognitive dimensions</span>
@@ -1674,7 +1589,7 @@
                         </div>
                         <div class="feature-content">
                             <h3 class="feature-title">Active Recall Tools</h3>
-                            <p class="feature-desc">Flashcards and quizzes optimized for your retention patterns with spaced repetition algorithms that actually work.</p>
+                            <p class="feature-desc">Flashcards and quizzes optimised for your retention patterns with spaced repetition algorithms that actually work.</p>
                             <div class="feature-stat">
                                 <span class="feature-stat-value">2.4x</span>
                                 <span class="feature-stat-label">better retention</span>
@@ -1868,99 +1783,6 @@
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
         // ==========================================
-        // HERO CANVAS ANIMATION
-        // ==========================================
-        if (!prefersReducedMotion) {
-            const canvas = document.getElementById('hero-canvas');
-            const ctx = canvas.getContext('2d');
-
-            let particles = [];
-            let animationTime = 0;
-
-            function resizeCanvas() {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-                initParticles();
-            }
-
-            class Particle {
-                constructor(x, y, size) {
-                    this.baseX = x;
-                    this.baseY = y;
-                    this.x = x;
-                    this.y = y;
-                    this.size = size;
-                    this.speedX = (Math.random() - 0.5) * 0.1;
-                    this.speedY = (Math.random() - 0.5) * 0.1;
-                    this.opacity = Math.random() * 0.2 + 0.1;
-                }
-
-                update(time) {
-                    // Very subtle organic movement
-                    this.x = this.baseX + Math.sin(time * 0.0005 + this.baseX) * 15;
-                    this.y = this.baseY + Math.cos(time * 0.0003 + this.baseY) * 15;
-                }
-
-                draw() {
-                    ctx.beginPath();
-                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(17, 24, 39, ${this.opacity})`;
-                    ctx.fill();
-                }
-            }
-
-            function initParticles() {
-                particles = [];
-                const particleCount = Math.min(60, Math.floor((canvas.width * canvas.height) / 15000));
-
-                for (let i = 0; i < particleCount; i++) {
-                    const x = Math.random() * canvas.width;
-                    const y = Math.random() * canvas.height;
-                    const size = Math.random() * 1.5 + 0.5;
-                    particles.push(new Particle(x, y, size));
-                }
-            }
-
-            function connectParticles() {
-                const maxDistance = 150;
-                for (let i = 0; i < particles.length; i++) {
-                    for (let j = i + 1; j < particles.length; j++) {
-                        const dx = particles[i].x - particles[j].x;
-                        const dy = particles[i].y - particles[j].y;
-                        const distance = Math.sqrt(dx * dx + dy * dy);
-
-                        if (distance < maxDistance) {
-                            const opacity = (1 - distance / maxDistance) * 0.03;
-                            ctx.beginPath();
-                            ctx.strokeStyle = `rgba(17, 24, 39, ${opacity})`;
-                            ctx.lineWidth = 0.5;
-                            ctx.moveTo(particles[i].x, particles[i].y);
-                            ctx.lineTo(particles[j].x, particles[j].y);
-                            ctx.stroke();
-                        }
-                    }
-                }
-            }
-
-            function animate() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                animationTime++;
-
-                particles.forEach(particle => {
-                    particle.update(animationTime);
-                    particle.draw();
-                });
-
-                connectParticles();
-                requestAnimationFrame(animate);
-            }
-
-            window.addEventListener('resize', resizeCanvas);
-            resizeCanvas();
-            animate();
-        }
-
-        // ==========================================
         // NAVIGATION
         // ==========================================
         const nav = document.getElementById('nav');
@@ -2021,16 +1843,9 @@
                 ease: 'power3.out',
                 delay: 1.1
             });
-
-            gsap.to('.hero-stats', {
-                opacity: 1,
-                duration: 0.8,
-                ease: 'power3.out',
-                delay: 1.3
-            });
         } else {
             // Instant show for reduced motion
-            document.querySelectorAll('.hero-label, .hero-title .word, .hero-subtitle, .hero-cta, .hero-stats').forEach(el => {
+            document.querySelectorAll('.hero-label, .hero-title .word, .hero-subtitle, .hero-cta').forEach(el => {
                 el.style.opacity = '1';
                 el.style.transform = 'none';
             });
