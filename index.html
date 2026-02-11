@@ -21,11 +21,7 @@
     <style>
         :root {
             /* Mind the Gap Color System */
-            --blue: #0055FF;
-            --blue-dark: #0044CC;
-            --blue-light: #E8F0FF;
             --teal: #2DD4BF;
-            --teal-dark: #14B8A6;
             --ink: #111827;
             --ink-light: #374151;
             --ink-muted: #6B7280;
@@ -40,7 +36,6 @@
             --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
             --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
             --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
-            --shadow-pop: 0 20px 40px -12px rgba(0, 85, 255, 0.25);
         }
 
 
@@ -74,8 +69,7 @@
             font-weight: 400;
         }
 
-
-        /* Typography System - Modern & Clean */
+        /* Typography System */
         .font-mono {
             font-family: 'JetBrains Mono', monospace;
         }
@@ -132,7 +126,7 @@
         }
 
         /* ========================================
-           SECTION 1: Gentle Systems Navigation
+           NAVIGATION
            ======================================== */
         .nav {
             position: fixed;
@@ -507,7 +501,7 @@
         }
 
         /* ========================================
-           SECTION 3: 3-Step Framework (Keeping Scroll Animation)
+           SECTION 3: 3-Step Framework
            ======================================== */
         .process-section {
             position: relative;
@@ -727,16 +721,17 @@
             grid-column: span 3;
             text-align: center;
             padding: 16px;
-            background: var(--ink);
+            background: var(--eraser);
+            border: 2px solid var(--grey-200);
             border-radius: 12px;
-            color: var(--eraser);
+            color: var(--ink);
             font-family: 'JetBrains Mono', monospace;
             font-size: 14px;
         }
 
         .hub-counter span {
-            color: var(--teal);
-            font-weight: 600;
+            color: var(--ink);
+            font-weight: 700;
         }
 
         /* AI Visual - Chat */
@@ -797,7 +792,7 @@
         }
 
         /* ========================================
-           SECTION 4: Features - Timeline Design
+           SECTION 4: Features 
            ======================================== */
         .features-section {
             padding: 200px 24px;
@@ -1342,7 +1337,7 @@
 <body>
     <!-- Floating Pill Navigation (Gentle Systems) -->
     <nav class="nav" id="nav">
-        <a href="index.html" class="nav-pill nav-logo">
+        <a href="/" class="nav-pill nav-logo">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink: 0;">
                 <rect x="2" y="4" width="8" height="16" rx="2" fill="currentColor"/>
                 <rect x="14" y="4" width="8" height="16" rx="2" fill="currentColor"/>
@@ -1352,13 +1347,14 @@
         </a>
         <a href="#process" class="nav-pill">How It Works</a>
         <a href="#features" class="nav-pill">Features</a>
+        <a href="about.html" class="nav-pill">About</a>
         <a href="docs.html" class="nav-pill">Docs</a>
         <a href="#cta" class="nav-pill cta">Join Waitlist</a>
     </nav>
 
     <!-- Mobile Navigation -->
     <div class="mobile-nav" id="mobile-nav">
-        <a href="index.html" class="mobile-logo" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;">
+        <a href="/" class="mobile-logo" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect x="2" y="4" width="8" height="16" rx="2" fill="currentColor"/>
                 <rect x="14" y="4" width="8" height="16" rx="2" fill="currentColor"/>
@@ -1367,8 +1363,8 @@
             <span>Mind the Gap</span>
         </a>
         <div style="display: flex; gap: 8px;">
-            <a href="docs.html" class="mobile-menu-btn" style="background: transparent; border: 1.5px solid var(--ink); color: var(--ink);">
-                Docs
+            <a href="about.html" class="mobile-menu-btn" style="background: transparent; border: 1.5px solid var(--ink); color: var(--ink);">
+                About
             </a>
             <a href="#cta" class="mobile-menu-btn">
                 Join Waitlist
@@ -1421,35 +1417,41 @@
             <div class="logo-carousel-track">
                 <!-- First set of logos -->
                 <div class="logo-item">
-                    <img src="logo-carousel/expo.png" alt="Expo">
+                    <img src="assets/images/logos/expo.png" alt="Expo 2025">
                 </div>
                 <div class="logo-item">
-                    <img src="logo-carousel/fit.png" alt="FIT">
+                    <img src="assets/images/logos/fit.png" alt="FIT">
                 </div>
                 <div class="logo-item">
-                    <img src="logo-carousel/ndrc.png" alt="NDRC">
+                    <img src="assets/images/logos/ndrc.png" alt="NDRC">
                 </div>
                 <div class="logo-item">
-                    <img src="logo-carousel/ted.png" alt="TED">
+                    <img src="assets/images/logos/ted.png" alt="TEDx">
                 </div>
                 <div class="logo-item">
-                    <img src="logo-carousel/yste.jpeg" alt="YSTE">
+                    <img src="assets/images/logos/yste.jpeg" alt="BT Young Scientist">
+                </div>
+                <div class="logo-item">
+                    <img src="assets/images/logos/irishtimes.jpeg" alt="The Irish Times">
                 </div>
                 <!-- Duplicate set for seamless loop -->
                 <div class="logo-item">
-                    <img src="logo-carousel/expo.png" alt="Expo">
+                    <img src="assets/images/logos/expo.png" alt="Expo 2025">
                 </div>
                 <div class="logo-item">
-                    <img src="logo-carousel/fit.png" alt="FIT">
+                    <img src="assets/images/logos/fit.png" alt="FIT">
                 </div>
                 <div class="logo-item">
-                    <img src="logo-carousel/ndrc.png" alt="NDRC">
+                    <img src="assets/images/logos/ndrc.png" alt="NDRC">
                 </div>
                 <div class="logo-item">
-                    <img src="logo-carousel/ted.png" alt="TED">
+                    <img src="assets/images/logos/ted.png" alt="TEDx">
                 </div>
                 <div class="logo-item">
-                    <img src="logo-carousel/yste.jpeg" alt="YSTE">
+                    <img src="assets/images/logos/yste.jpeg" alt="BT Young Scientist">
+                </div>
+                <div class="logo-item">
+                    <img src="assets/images/logos/irishtimes.jpeg" alt="The Irish Times">
                 </div>
             </div>
         </div>
@@ -1747,10 +1749,10 @@
             <div>
                 <div class="footer-title">Company</div>
                 <ul class="footer-links">
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Research</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="about.html#research">Research</a></li>
+                    <li><a href="docs.html">Documentation</a></li>
+                    <li><a href="docs.html">Terms</a></li>
                 </ul>
             </div>
         </div>

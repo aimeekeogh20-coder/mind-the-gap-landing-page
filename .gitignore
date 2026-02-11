@@ -1,0 +1,22 @@
+# Development and Reference Files
+reference websites/
+founder photos/
+PRD.md
+
+# IDE and Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Temporary Files
+*.tmp
+*.temp
